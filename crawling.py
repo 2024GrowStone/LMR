@@ -12,12 +12,15 @@ import time, os
 
 class EverytimeCrawler:
 
-    def __init__(self, id: str, pw: str, subject: str):
+    def __init__(self, id: str, pw: str, major: str):
         """
-        :params: user's id
-        :params: user's password
-        :params:
+        Crawling professors' evaluation on EveryTime.
+
+        :params id:     EveryTime id
+        :params pw:     EveryTime password
+        :params major:  major name
         """
+
         options = Options()
         options.add_argument("--start-maximized")
         self.driver = webdriver.Chrome(options)
@@ -26,17 +29,17 @@ class EverytimeCrawler:
         # user's information
         self.id = id
         self.pw = pw
-        self.subject = subject
+        self.major = major
 
     def crawling(self):
-        self.login()
+        self.login_everytime()
         self.get_evaluation()
 
         time.sleep(2)
         self.driver.quit()
 
 
-    def login(self):
+    def login_everytime(self):
         """
         login function
         """
@@ -64,14 +67,14 @@ class EverytimeCrawler:
         )
         navigation.click()
 
-        # open and search subject
+        # open and search major
         search_btn = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, "//*[@id='container']/ul/li[1]"))
         )
         search_btn.click()
         time.sleep(2)
         keyword_btn = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, "//*[@id='subjects']/div[1]/a[4]"))
+                    EC.presence_of_element_located((By.XPATH, "//*[@id='majors']/div[1]/a[4]"))
         )
         keyword_btn.click()
         time.sleep(2)
@@ -79,10 +82,10 @@ class EverytimeCrawler:
         search_input = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/form[5]/div/input"))
         )
-        search_input.send_keys(f"{self.subject}\n")
+        search_input.send_keys(f"{self.major}\n")
 
         evaluation_page = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, "//*[@id='subjects']/div[2]/table/tbody/tr[1]/td[8]"))
+                    EC.presence_of_element_located((By.XPATH, "//*[@id='majors']/div[2]/table/tbody/tr[1]/td[8]"))
         )
         evaluation_page.click()
 
