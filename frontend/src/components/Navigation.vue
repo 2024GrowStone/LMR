@@ -4,7 +4,7 @@
         <div>
             <img class="menu_icon"src="../assets/icons/hamburger.svg" alt="hamburger icon">
         </div>
-        <div class="title">
+        <div class="title medium">
             StartHalf
         </div>
     </header>

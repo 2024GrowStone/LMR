@@ -1,3 +1,5 @@
+@import "./base.css";
+
 .main_container {
     text-align: center;
 
@@ -16,7 +18,7 @@
     justify-content: center;
     gap: 6rem;
 
-    padding-top: 8rem;
+    padding-top: 2rem;
 
     width: 40%;
     height: 100vh;
@@ -48,6 +50,8 @@
     height: 3rem;
     flex-shrink: 0;
 
+    font-size: larger;
+
     border:none;
     border-radius: 0.3rem;
     background: #F8F8F8;
@@ -59,6 +63,8 @@
     width: 70%;
     height: 3rem;
     flex-shrink: 0;
+
+    font-size: larger;
 
     border:none;
     border-radius: 0.3rem;
@@ -72,7 +78,14 @@
     height: 3.5rem;
     flex-shrink: 0;
 
+    font-size: larger;
+    font-weight: bold;
+
     border: none;
     border-radius: 0.4rem;
     background: #6FA0FF;
+}
+
+.login_btn:hover {
+    background: #537fd6;
 }
