@@ -1,4 +1,6 @@
 .main_container {
+    text-align: center;
+    
     padding-top: 4.125rem;
     width: 100%;
     height: 100vh;
@@ -10,6 +12,11 @@
 }
 
 .login_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+
     padding-top: 8rem;
 
     width: 40%;
@@ -20,4 +27,53 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(255, 255, 255, 0.80);
+}
+
+.school_icon {
+    width: 50%;
+    border-radius: 0.75rem;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* login inputs */
+.login_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.id_input {
+    width: 70%;
+    height: 3rem;
+    flex-shrink: 0;
+
+    border:none;
+    border-radius: 0.3rem;
+    background: #F8F8F8;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pw_input {
+    width: 70%;
+    height: 3rem;
+    flex-shrink: 0;
+
+    border:none;
+    border-radius: 0.3rem;
+    background: #F8F8F8;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.login_btn {
+    width: 72%;
+    height: 3.5rem;
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 0.4rem;
+    background: #6FA0FF;
 }

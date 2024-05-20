@@ -1,4 +1,7 @@
 .header_container {
+    display: flex;
+    align-items: center;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -14,6 +17,8 @@
 }
 
 .menu_icon {
+    margin-top: 0.4rem;
+    margin-right: 1rem;
     width: 2.625rem;
     height: 2.625rem;
     flex-shrink: 0;
