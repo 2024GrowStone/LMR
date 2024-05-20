@@ -1,3 +1,9 @@
+# virtual environment
+/venv/
+
+# API keys
 .env
 
-/venv/
+# python
+.vscode
+__pycache__
