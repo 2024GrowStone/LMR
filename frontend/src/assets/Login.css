@@ -1,0 +1,23 @@
+.main_container {
+    padding-top: 4.125rem;
+    width: 100%;
+    height: 100vh;
+    /* background */
+    background-image: url("../assets/icons/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login_container {
+    padding-top: 8rem;
+
+    width: 40%;
+    height: 100vh;
+    flex-shrink: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.80);
+}

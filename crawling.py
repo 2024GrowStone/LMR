@@ -9,6 +9,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
 import time, os
 
+import requests
+from lxml import html
+
 
 class EverytimeCrawler:
 
@@ -74,20 +77,42 @@ class EverytimeCrawler:
         search_btn.click()
         time.sleep(2)
         keyword_btn = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, "//*[@id='majors']/div[1]/a[4]"))
+                    EC.presence_of_element_located((By.XPATH, "//*[@id='subjects']/div[1]/a[4]"))
         )
         keyword_btn.click()
         time.sleep(2)
-        # search
+        
+        # search major
         search_input = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/form[5]/div/input"))
+                    EC.presence_of_element_located((By.XPATH, "//*[@id='subjectKeywordFilter']/div/input"))
         )
         search_input.send_keys(f"{self.major}\n")
 
-        evaluation_page = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, "//*[@id='majors']/div[2]/table/tbody/tr[1]/td[8]"))
-        )
-        evaluation_page.click()
+
+        # //*[@id="subjects"]/div[2]/table/tbody/tr[1]/td[8]/a
+        # //*[@id="subjects"]/div[2]/table/tbody/tr[2]/td[8]/a
+
+        with requests.Session() as s:
+            for cookie in self.driver.get_cookies():
+                c = {cookie["name"]: cookie["value"]}
+                s.cookies.update(c)
+        headers = {'User-Agent': 'MyUserAgent/1.0'}
+        url = 'https://everytime.kr/timetable'  # 여기에 실제 URL을 입력하세요
+        response = s.get(url, headers=headers)
+        print(response)
+
+        # HTML 파싱
+        tree = html.fromstring(response.content)
+
+        # XPath를 사용하여 href 속성 추출
+        xpath = '//*[@id="subjects"]/div[2]/table/tbody/tr[1]/td[8]/a'
+        element = tree.xpath(xpath)
+
+        if element:
+            href = element[0].get('href')
+            print(f"href: {href}")
+        else:
+            print("해당 XPath에 요소를 찾을 수 없습니다.")
 
 
 if __name__=="__main__":
