@@ -6,7 +6,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow your frontend URL in production
+    allow_origins=["*"],  # Allow frontend URL in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -18,6 +18,9 @@ class LoginData(BaseModel):
 
 @app.post("/login")
 async def login(data: LoginData):
+    """
+    login check
+    """
     if data.username == "test" and data.password == "1234":
         return { 
             "agent": "Kim MinSup",
@@ -25,3 +28,8 @@ async def login(data: LoginData):
         }
     else:
         raise HTTPException(status_code=400, detail="Invalid credentials")
+
+
+@app.post("/get_eval")
+async def get_eval():
+    pass
